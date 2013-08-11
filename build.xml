@@ -2,6 +2,8 @@
 	<property environment="env"/>
 	<!-- Properties -->
 
+	<property file="build_number.properties" prefix="build_number"/>
+	
 	<property name="build.dir" value="build"/>
 	<property name="src.dir" value="src"/>
 	
@@ -10,7 +12,7 @@
 
 	<property name="classes.dir" value="${build.dir}/classes"/>
 	<property name="dist.dir" value="dist"/>
-	<property name="jar.file.name" value="${dist.dir}/${ant.project.name}.jar"/>
+	<property name="jar.file.name" value="${dist.dir}/${ant.project.name}-${build_number.build_number}.jar"/>
 
 	<property name="main-class"  value="MAIN_CLASS_HERE"/>
 	
@@ -20,6 +22,13 @@
 	
 	<!-- Targets -->
 
+	<!-- Increment Build Number -->
+	<target name="increment_build_number">
+		<propertyfile file="build_number.properties">
+			<entry key="build_number" type="int" operation="+" default="1"/>
+		</propertyfile>
+	</target>
+	
 	<!-- Clear build directory -->
 	<target name="clean">
 		<delete dir="${build.dir}"/>
@@ -42,6 +51,8 @@
 	<!-- Package the compiled files -->
 	<target name="package" depends="compile">
 
+		<antcall target="increment_build_number" />
+		
 		<mkdir dir="${dist.dir}"/>
 		<delete includeemptydirs="true">
 			<fileset dir="${dist.dir}" includes="**/*"/>
