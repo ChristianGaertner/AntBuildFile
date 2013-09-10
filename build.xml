@@ -1,3 +1,8 @@
+<!--
+AntBuildFile by Christian Gärtner <christiangaertner.film@googlemail.com>
+https://github.com/ChristianGaertner/AntBuildFile
+LICENSE: MIT
+-->
 <project name="PROJECT_NAME_HERE" default="main">
 	<property environment="env"/>
 	<!-- Properties -->
