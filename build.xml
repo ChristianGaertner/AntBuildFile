@@ -41,7 +41,11 @@ LICENSE: MIT
 	</target>
 	<!-- Prepare (creating dirs) -->
 	<target name="prepare">
+		<!-- Create lib dir if it doesn' t exists -->
 		<mkdir dir="${lib.dir}"/>
+
+		<!-- Download build_number file if it doesn' t exists-->
+		<get src="https://raw.github.com/ChristianGaertner/AntBuildFile/master/build_number.properties" dest="build_number.properties" skipexisting="true"/>
 	</target>
 
 
