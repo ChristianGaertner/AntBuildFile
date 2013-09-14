@@ -83,7 +83,7 @@ LICENSE: MIT
 	</target>
 	
 	<target name="run">
-		<java jar="${jar.file.name.prev}" fork="true"/>
+		<java jar="${jar.file.name}" fork="true"/>
 	</target>
 
 	<target name="clean-build" depends="clean,package"/>
