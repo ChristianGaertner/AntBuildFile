@@ -12,6 +12,7 @@ LICENSE: MIT
 	<property name="build.dir" value="build"/>
 	<property name="src.dir" value="src"/>
 	<property name="res.dir" value="res"/>
+	<property name="lib.dir" value="${res.dir}/libs"/>
 
 
 	<property name="classes.dir" value="${build.dir}/classes"/>
