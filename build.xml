@@ -11,26 +11,27 @@ LICENSE: MIT
 	
 	<property name="build.dir" value="build"/>
 	<property name="src.dir" value="src"/>
-	
-	<property name="lib.dir" value="res/libs"/>
+	<property name="res.dir" value="res"/>
 
 
 	<property name="classes.dir" value="${build.dir}/classes"/>
 	<property name="dist.dir" value="dist"/>
 	<property name="jar.file.name" value="${dist.dir}/${ant.project.name}-${build_number.build_number}.jar"/>
+	<property name="jar.file.name.prev" value="${dist.dir}/${ant.project.name}-${build_number.build_number_prev}.jar"/>
 
 	<property name="main-class"  value="MAIN_CLASS_HERE"/>
 	
 	<path id="classpath">
-        	<fileset dir="${lib.dir}" includes="**/*.jar"/>
-    	</path>
+    	<fileset dir="${res.dir}/libs" includes="**/*.jar"/>
+	</path>
 	
 	<!-- Targets -->
 
 	<!-- Increment Build Number -->
 	<target name="increment_build_number">
 		<propertyfile file="build_number.properties">
-			<entry key="build_number" type="int" operation="+" default="1"/>
+			<entry key="build_number" type="int" operation="+" default="0"/>
+			<entry key="build_number_prev" type="int" operation="+" default="-1"/>
 		</propertyfile>
 	</target>
 	
@@ -82,12 +83,7 @@ LICENSE: MIT
 	</target>
 	
 	<target name="run">
-		<java fork="true" classname="${main-class}">
-            <classpath>
-                <path refid="classpath"/>
-                <path location="${dist.dir}/${ant.project.name}.jar"/>
-            </classpath>
-        </java>
+		<java jar="${jar.file.name.prev}" fork="true"/>
 	</target>
 	
 	<target name="run-jar">
