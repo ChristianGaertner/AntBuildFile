@@ -77,6 +77,7 @@ LICENSE: MIT
                 <attribute name="Main-Class" value="${main-class}"/>
             </manifest>
             <fileset dir="${classes.dir}" includes="**/*.class" />
+            <fileset dir="${res.dir}" includes="**/*.png" />
             <zipgroupfileset dir="${lib.dir}" includes="**/*.jar" />
         </jar>
 
