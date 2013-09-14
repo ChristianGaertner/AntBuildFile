@@ -17,7 +17,6 @@ LICENSE: MIT
 	<property name="classes.dir" value="${build.dir}/classes"/>
 	<property name="dist.dir" value="dist"/>
 	<property name="jar.file.name" value="${dist.dir}/${ant.project.name}-${build_number.build_number}.jar"/>
-	<property name="jar.file.name.prev" value="${dist.dir}/${ant.project.name}-${build_number.build_number_prev}.jar"/>
 
 	<property name="main-class"  value="MAIN_CLASS_HERE"/>
 	
@@ -31,8 +30,8 @@ LICENSE: MIT
 	<target name="increment_build_number">
 		<propertyfile file="build_number.properties">
 			<entry key="build_number" type="int" operation="+" default="0"/>
-			<entry key="build_number_prev" type="int" operation="+" default="-1"/>
 		</propertyfile>
+		<property name="jar.file.name" value="${dist.dir}/${ant.project.name}-${build_number.build_number}.jar"/>
 	</target>
 	
 	<!-- Clear build directory -->
@@ -85,10 +84,6 @@ LICENSE: MIT
 	
 	<target name="run">
 		<java jar="${jar.file.name.prev}" fork="true"/>
-	</target>
-	
-	<target name="run-jar">
-		<java jar="${jar.file.name}" fork="true"/>
 	</target>
 
 	<target name="clean-build" depends="clean,package"/>
